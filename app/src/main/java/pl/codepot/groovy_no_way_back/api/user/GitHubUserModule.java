@@ -22,4 +22,10 @@ public final class GitHubUserModule {
     GitHubUserApi provideGitHubUserApi(@GitHub RestAdapter restAdapter) {
         return restAdapter.create(GitHubUserApi.class);
     }
+
+    @Provides
+    @Singleton
+    GitHubUserSearchApi provideGitHubUserSearchApi(@GitHub RestAdapter restAdapter) {
+        return restAdapter.create(GitHubUserSearchApi.class);
+    }
 }
