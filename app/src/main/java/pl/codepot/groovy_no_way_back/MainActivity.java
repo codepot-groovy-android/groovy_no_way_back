@@ -8,6 +8,9 @@ import com.bumptech.glide.Glide;
 
 import javax.inject.Inject;
 
+import pl.codepot.groovy_no_way_back.api.user.GitHubUserApi;
+import pl.codepot.groovy_no_way_back.dagger.Injector;
+import pl.codepot.groovy_no_way_back.dto.GitHubUser;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;

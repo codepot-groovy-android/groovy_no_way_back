@@ -1,4 +1,4 @@
-package pl.codepot.groovy_no_way_back;
+package pl.codepot.groovy_no_way_back.dagger;
 
 import dagger.ObjectGraph;
 

@@ -1,9 +1,11 @@
-package pl.codepot.groovy_no_way_back;
+package pl.codepot.groovy_no_way_back.api.user;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import pl.codepot.groovy_no_way_back.MainActivity;
+import pl.codepot.groovy_no_way_back.dagger.qualifier.GitHub;
 import retrofit.RestAdapter;
 
 

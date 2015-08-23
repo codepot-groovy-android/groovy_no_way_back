@@ -1,4 +1,4 @@
-package pl.codepot.groovy_no_way_back;
+package pl.codepot.groovy_no_way_back.dagger;
 
 import com.google.gson.Gson;
 
@@ -6,6 +6,8 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import pl.codepot.groovy_no_way_back.api.user.GitHubUserModule;
+import pl.codepot.groovy_no_way_back.dagger.qualifier.GitHub;
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
 import retrofit.converter.GsonConverter;
