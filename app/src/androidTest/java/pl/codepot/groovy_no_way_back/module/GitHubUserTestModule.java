@@ -8,7 +8,6 @@ import pl.codepot.groovy_no_way_back.MainActivity;
 import pl.codepot.groovy_no_way_back.api.user.GitHubUserApi;
 import pl.codepot.groovy_no_way_back.dto.GitHubUser;
 import pl.codepot.groovy_no_way_back.factory.GitHubUserFactory;
-import retrofit.http.Path;
 import rx.Observable;
 
 
@@ -26,7 +25,7 @@ public final class GitHubUserTestModule {
     GitHubUserApi provideGitHubUserApi() {
         return new GitHubUserApi() {
             @Override
-            public Observable<GitHubUser> get(@Path("username") String username) {
+            public Observable<GitHubUser> get(String username) {
                 return Observable.just(GitHubUserFactory.newOrdonTeam());
             }
         };
