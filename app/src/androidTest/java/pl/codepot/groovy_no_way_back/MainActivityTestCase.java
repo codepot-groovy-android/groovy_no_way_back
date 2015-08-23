@@ -5,6 +5,7 @@ import android.support.test.espresso.matcher.ViewMatchers;
 import android.test.ActivityInstrumentationTestCase2;
 
 import pl.codepot.groovy_no_way_back.dagger.Injector;
+import pl.codepot.groovy_no_way_back.module.GitHubUserTestModule;
 
 import static android.support.test.espresso.Espresso.onView;
 
