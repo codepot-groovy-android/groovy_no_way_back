@@ -2,7 +2,9 @@ package pl.codepot.groovy_no_way_back;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
@@ -47,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayUser(GitHubUser gitHubUser) {
-        ImageView avatarView = (ImageView) findViewById(R.id.avatarView);
-        Glide.with(this).load(gitHubUser.avatarUrl).into(avatarView);
+        TextView usernameView = (TextView) findViewById(R.id.usernameView);
+        usernameView.setText(gitHubUser.login);
     }
 
     private void displayError(Throwable throwable) {

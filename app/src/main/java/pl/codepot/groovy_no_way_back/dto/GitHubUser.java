@@ -1,7 +1,7 @@
 package pl.codepot.groovy_no_way_back.dto;
 
 public final class GitHubUser {
-    String login;
+    public String login;
     Long id;
     public String avatarUrl;
     String gravatarId;
