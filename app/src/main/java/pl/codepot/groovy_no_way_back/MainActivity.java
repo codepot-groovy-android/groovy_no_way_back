@@ -2,14 +2,13 @@ package pl.codepot.groovy_no_way_back;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.ImageView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 
 import javax.inject.Inject;
 
+import pl.codepot.groovy_no_way_back.adapter.GitHubAdapter;
 import pl.codepot.groovy_no_way_back.api.user.GitHubUserApi;
 import pl.codepot.groovy_no_way_back.dagger.Injector;
 import pl.codepot.groovy_no_way_back.dto.GitHubUser;
@@ -26,8 +25,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         Injector.inject(this);
+        setContentView(R.layout.activity_main);
+        RecyclerView list = (RecyclerView) findViewById(R.id.list);
+        list.setLayoutManager(new LinearLayoutManager(this));
+        list.setAdapter(new GitHubAdapter());
     }
 
     @Override

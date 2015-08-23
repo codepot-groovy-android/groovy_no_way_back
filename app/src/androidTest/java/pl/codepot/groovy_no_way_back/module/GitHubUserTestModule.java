@@ -41,7 +41,7 @@ public final class GitHubUserTestModule {
         return new GitHubUserSearchApi() {
             @Override
             public Observable<GitHubSearchResults<GitHubUser>> get(@Query("q") String query) {
-                return Observable.just(new GitHubSearchResults<GitHubUser>(newOrdonTeam()));
+                return Observable.just(new GitHubSearchResults<>(newOrdonTeam()));
             }
         };
     }
