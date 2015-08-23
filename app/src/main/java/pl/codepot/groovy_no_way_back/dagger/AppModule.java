@@ -7,6 +7,8 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import pl.codepot.groovy_no_way_back.api.organization.GitHubOrganizationModule;
+import pl.codepot.groovy_no_way_back.api.repo.GitHubRepoModule;
 import pl.codepot.groovy_no_way_back.api.user.GitHubUserModule;
 import pl.codepot.groovy_no_way_back.dagger.qualifier.GitHub;
 import retrofit.RestAdapter;
@@ -17,7 +19,11 @@ import static com.google.gson.FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES;
 
 
 @Module(
-        includes = GitHubUserModule.class,
+        includes = {
+                GitHubUserModule.class,
+                GitHubRepoModule.class,
+                GitHubOrganizationModule.class
+        },
         library = true
 )
 @SuppressWarnings("unused")

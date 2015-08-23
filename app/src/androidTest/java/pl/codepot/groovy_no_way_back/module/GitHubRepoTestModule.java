@@ -6,9 +6,12 @@ import dagger.Module;
 import dagger.Provides;
 import pl.codepot.groovy_no_way_back.MainActivity;
 import pl.codepot.groovy_no_way_back.api.repo.GitHubRepoApi;
+import pl.codepot.groovy_no_way_back.api.repo.GitHubRepoSearchApi;
 import pl.codepot.groovy_no_way_back.dto.GitHubRepo;
-import pl.codepot.groovy_no_way_back.factory.GitHubRepoFactory;
+import pl.codepot.groovy_no_way_back.dto.GitHubSearchResults;
 import rx.Observable;
+
+import static pl.codepot.groovy_no_way_back.factory.GitHubRepoFactory.newAndroidMaze;
 
 
 @Module(
@@ -26,7 +29,18 @@ public final class GitHubRepoTestModule {
         return new GitHubRepoApi() {
             @Override
             public Observable<GitHubRepo> get(String username, String reponame) {
-                return Observable.just(GitHubRepoFactory.newAndroidMaze());
+                return Observable.just(newAndroidMaze());
+            }
+        };
+    }
+
+    @Provides
+    @Singleton
+    GitHubRepoSearchApi provideGitHubRepoSearchApi() {
+        return new GitHubRepoSearchApi() {
+            @Override
+            public Observable<GitHubSearchResults<GitHubRepo>> get(String query) {
+                return Observable.just(new GitHubSearchResults<>(newAndroidMaze()));
             }
         };
     }
