@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void displayUser(GitHubUser gitHubUser) {
         ImageView avatarView = (ImageView) findViewById(R.id.avatarView);
-        Glide.with(this).load(gitHubUser.avatar_url).into(avatarView);
+        Glide.with(this).load(gitHubUser.avatarUrl).into(avatarView);
     }
 
     private void displayError(Throwable throwable) {
