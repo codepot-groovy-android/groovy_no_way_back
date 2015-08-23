@@ -7,6 +7,9 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
+import javax.inject.Inject;
+
+import dagger.ObjectGraph;
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
 import retrofit.converter.GsonConverter;
@@ -15,18 +18,19 @@ import rx.functions.Action1;
 
 public class MainActivity extends AppCompatActivity {
 
+    @Inject
+    GitHubUserApi gitHubUserApi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ObjectGraph.create(new GitHubUserModule()).inject(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint("https://api.github.com")
-                .setConverter(new GsonConverter(new Gson())).setClient(new OkClient()).setLogLevel(RestAdapter.LogLevel.FULL).build();
-        GitHubUserApi gitHubUserApi = restAdapter.create(GitHubUserApi.class);
         gitHubUserApi.get("ordonteam").observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<GitHubUser>() {
             @Override
             public void call(GitHubUser gitHubUser) {
