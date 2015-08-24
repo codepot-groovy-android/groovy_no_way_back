@@ -70,6 +70,7 @@ public final class ChooseUserActivity extends Activity {
         Intent intent = new Intent(this, CalculateScoreActivity.class);
         intent.putExtra("login", event.gitHubUser.login);
         startActivity(intent);
+        finish();
     }
 
     @Override

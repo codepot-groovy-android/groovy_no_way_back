@@ -7,4 +7,7 @@
     <string name="press_to_play">To play aging press the button</string>
     <string name="play">Play</string>
     <string name="error_message">An error occurs</string>
+    <string name="try_again">Try again</string>
+    <string name="best_score_was">Best score was:</string>
+    <string name="achived_score">You reached score equal to:</string>
 </resources>

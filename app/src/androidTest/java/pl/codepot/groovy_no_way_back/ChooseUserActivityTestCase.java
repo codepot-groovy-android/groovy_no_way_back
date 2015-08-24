@@ -38,6 +38,6 @@ public final class ChooseUserActivityTestCase extends ActivityInstrumentationTes
         Injector.setTestModules(new TestModules());
         getActivity();
         onView(ViewMatchers.withId(R.id.username_view)).perform(ViewActions.click());
-        onView(ViewMatchers.withId(R.id.calculate_score_activity)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+        onView(ViewMatchers.withId(R.id.best_score_view)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 }

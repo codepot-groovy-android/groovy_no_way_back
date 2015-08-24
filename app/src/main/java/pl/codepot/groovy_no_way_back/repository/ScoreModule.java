@@ -6,11 +6,15 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import pl.codepot.groovy_no_way_back.CalculateScoreActivity;
 import pl.codepot.groovy_no_way_back.StartGameActivity;
 
 @Module(
         complete = false,
-        injects = StartGameActivity.class,
+        injects = {
+                StartGameActivity.class,
+                CalculateScoreActivity.class
+        },
         library = true
 )
 @SuppressWarnings("unused")

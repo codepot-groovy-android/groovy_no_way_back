@@ -14,6 +14,7 @@ import dagger.Provides;
 import pl.codepot.groovy_no_way_back.api.organization.GitHubOrganizationModule;
 import pl.codepot.groovy_no_way_back.api.repo.GitHubRepoModule;
 import pl.codepot.groovy_no_way_back.api.user.GitHubUserModule;
+import pl.codepot.groovy_no_way_back.calculator.CalcluateScoreModule;
 import pl.codepot.groovy_no_way_back.dagger.qualifier.GitHub;
 import pl.codepot.groovy_no_way_back.random.RandomQueryGeneratorModule;
 import pl.codepot.groovy_no_way_back.repository.ScoreModule;
@@ -30,7 +31,8 @@ import static com.google.gson.FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES;
                 GitHubRepoModule.class,
                 GitHubOrganizationModule.class,
                 ScoreModule.class,
-                RandomQueryGeneratorModule.class
+                RandomQueryGeneratorModule.class,
+                CalcluateScoreModule.class
         },
         library = true
 )
