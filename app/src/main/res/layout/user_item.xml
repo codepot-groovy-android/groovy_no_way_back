@@ -29,32 +29,5 @@
             android:singleLine="true"
             android:textAppearance="?android:textAppearanceLarge"
             tools:text="OrdonTeam"/>
-
-        <TextView
-            android:id="@+id/name_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:textAppearance="?android:textAppearanceMedium"
-            tools:text="Karol"/>
-
-        <TextView
-            android:id="@+id/location_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:textAppearance="?android:textAppearanceMedium"
-            tools:text="Warsaw"/>
-
-        <TextView
-            android:id="@+id/email_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:textAppearance="?android:textAppearanceMedium"
-            tools:text="ordon1313@gmail.com"/>
     </LinearLayout>
 </LinearLayout>

@@ -37,9 +37,6 @@ public final class UserItemAdapter implements ItemAdapter<UserItemAdapter.UserHo
             userHolder.avatarView.setImageResource(R.drawable.octocat);
         }
         userHolder.usernameView.setText(gitHubUser.login);
-        userHolder.nameView.setText(gitHubUser.name);
-        userHolder.locationView.setText(gitHubUser.location);
-        userHolder.emailView.setText(gitHubUser.email);
         userHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,18 +55,12 @@ public final class UserItemAdapter implements ItemAdapter<UserItemAdapter.UserHo
         final View itemView;
         final ImageView avatarView;
         final TextView usernameView;
-        final TextView nameView;
-        final TextView locationView;
-        final TextView emailView;
 
         public UserHolder(View itemView) {
             super(itemView);
             this.itemView = itemView;
             avatarView = (ImageView) itemView.findViewById(R.id.avatar_view);
             usernameView = (TextView) itemView.findViewById(R.id.username_view);
-            nameView = (TextView) itemView.findViewById(R.id.name_view);
-            locationView = (TextView) itemView.findViewById(R.id.location_view);
-            emailView = (TextView) itemView.findViewById(R.id.email_view);
         }
     }
 }
