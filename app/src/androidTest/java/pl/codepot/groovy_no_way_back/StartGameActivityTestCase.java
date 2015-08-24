@@ -1,9 +1,9 @@
 package pl.codepot.groovy_no_way_back;
 
+import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.assertion.ViewAssertions;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.suitebuilder.annotation.Suppress;
 
 import pl.codepot.groovy_no_way_back.dagger.Injector;
 import pl.codepot.groovy_no_way_back.module.GitHubUserTestModule;
@@ -22,9 +22,8 @@ public final class StartGameActivityTestCase extends ActivityInstrumentationTest
         getActivity();
     }
 
-    @Deprecated
-    @Suppress
-    public void testShouldDisplayLogin() {
-        onView(ViewMatchers.withId(R.id.scoreView)).check(ViewAssertions.matches(ViewMatchers.withText("OrdonTeam")));
+    public void testShouldStartChooseActivityAfterPlayClicked() {
+        onView(ViewMatchers.withId(R.id.play)).perform(ViewActions.click());
+        onView(ViewMatchers.withId(R.id.users_list)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 }
