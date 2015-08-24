@@ -13,6 +13,7 @@ import pl.codepot.groovy_no_way_back.api.user.GitHubUserSearchApi;
 import pl.codepot.groovy_no_way_back.dagger.Injector;
 import pl.codepot.groovy_no_way_back.dto.GitHubSearchResults;
 import pl.codepot.groovy_no_way_back.dto.GitHubUser;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 
 public final class ChooseUserActivity extends Activity {
@@ -35,6 +36,7 @@ public final class ChooseUserActivity extends Activity {
     protected void onResume() {
         super.onResume();
         gitHubUserSearchApi.get("abc")
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<GitHubSearchResults<GitHubUser>>() {
                     @Override
                     public void call(GitHubSearchResults<GitHubUser> gitHubSearchResults) {
@@ -49,9 +51,7 @@ public final class ChooseUserActivity extends Activity {
     }
 
     private void displaySearchResults(GitHubSearchResults<GitHubUser> gitHubSearchResults) {
-        for (GitHubUser gitHubUser : gitHubSearchResults.items) {
-            adapter.add(gitHubUser);
-        }
+        adapter.add(gitHubSearchResults.items);
     }
 
     private void handleError(Throwable throwable) {
