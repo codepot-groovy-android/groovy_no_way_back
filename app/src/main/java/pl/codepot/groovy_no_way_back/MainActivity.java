@@ -18,51 +18,10 @@ import rx.functions.Action1;
 
 public class MainActivity extends AppCompatActivity {
 
-    @Inject
-    GitHubUserApi gitHubUserApi;
-    private Subscription subscription;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Injector.inject(this);
-        setContentView(R.layout.activity_main);
-        RecyclerView list = (RecyclerView) findViewById(R.id.list);
-        list.setLayoutManager(new LinearLayoutManager(this));
-        list.setAdapter(new GitHubAdapter());
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        subscription = gitHubUserApi.get("ordonteam")
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<GitHubUser>() {
-                    @Override
-                    public void call(GitHubUser gitHubUser) {
-                        displayUser(gitHubUser);
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        displayError(throwable);
-                    }
-                });
-    }
-
-    private void displayUser(GitHubUser gitHubUser) {
-        TextView usernameView = (TextView) findViewById(R.id.usernameView);
-        usernameView.setText(gitHubUser.login);
-    }
-
-    private void displayError(Throwable throwable) {
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (subscription != null) {
-            subscription.unsubscribe();
-        }
+        setContentView(R.layout.main_activity);
     }
 }

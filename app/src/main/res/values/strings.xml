@@ -3,4 +3,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="best_score">Your current best score is:</string>
+    <string name="press_to_play">To play aging press the button</string>
+    <string name="play">Play</string>
 </resources>
