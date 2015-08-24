@@ -13,6 +13,7 @@ import pl.codepot.groovy_no_way_back.api.user.GitHubUserSearchApi;
 import pl.codepot.groovy_no_way_back.dagger.Injector;
 import pl.codepot.groovy_no_way_back.dto.GitHubSearchResults;
 import pl.codepot.groovy_no_way_back.dto.GitHubUser;
+import pl.codepot.groovy_no_way_back.random.RandomQueryGenerator;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 
@@ -20,6 +21,8 @@ public final class ChooseUserActivity extends Activity {
 
     @Inject
     GitHubUserSearchApi gitHubUserSearchApi;
+    @Inject
+    RandomQueryGenerator randomQueryGenerator;
     GitHubAdapter adapter = new GitHubAdapter();
 
     @Override
@@ -35,7 +38,7 @@ public final class ChooseUserActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        gitHubUserSearchApi.get("abc")
+        gitHubUserSearchApi.get(randomQueryGenerator.getRandomQuery())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<GitHubSearchResults<GitHubUser>>() {
                     @Override
