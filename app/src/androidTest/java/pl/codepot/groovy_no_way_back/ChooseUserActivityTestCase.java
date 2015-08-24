@@ -1,5 +1,6 @@
 package pl.codepot.groovy_no_way_back;
 
+import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.assertion.ViewAssertions;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.test.ActivityInstrumentationTestCase2;
@@ -31,5 +32,12 @@ public final class ChooseUserActivityTestCase extends ActivityInstrumentationTes
         Injector.setTestModules(failingGitHubUserTestModule());
         getActivity();
         onView(ViewMatchers.withText(R.string.error_message)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+    }
+
+    public void testShouldStartCalculateActivity() {
+        Injector.setTestModules(new TestModules());
+        getActivity();
+        onView(ViewMatchers.withId(R.id.username_view)).perform(ViewActions.click());
+        onView(ViewMatchers.withId(R.id.calculate_score_activity)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 }
