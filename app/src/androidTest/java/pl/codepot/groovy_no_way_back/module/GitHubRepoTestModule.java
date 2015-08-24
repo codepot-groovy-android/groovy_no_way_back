@@ -4,7 +4,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import pl.codepot.groovy_no_way_back.MainActivity;
+import pl.codepot.groovy_no_way_back.StartGameActivity;
 import pl.codepot.groovy_no_way_back.api.repo.GitHubRepoApi;
 import pl.codepot.groovy_no_way_back.api.repo.GitHubRepoSearchApi;
 import pl.codepot.groovy_no_way_back.dto.GitHubRepo;
@@ -16,7 +16,7 @@ import static pl.codepot.groovy_no_way_back.factory.GitHubRepoFactory.newAndroid
 
 @Module(
         complete = false,
-        injects = MainActivity.class,
+        injects = StartGameActivity.class,
         library = true,
         overrides = true
 )

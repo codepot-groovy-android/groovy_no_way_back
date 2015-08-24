@@ -10,9 +10,9 @@ import pl.codepot.groovy_no_way_back.module.GitHubUserTestModule;
 
 import static android.support.test.espresso.Espresso.onView;
 
-public final class MainActivityTestCase extends ActivityInstrumentationTestCase2<MainActivity> {
-    public MainActivityTestCase() {
-        super(MainActivity.class);
+public final class StartGameActivityTestCase extends ActivityInstrumentationTestCase2<StartGameActivity> {
+    public StartGameActivityTestCase() {
+        super(StartGameActivity.class);
     }
 
     @Override
