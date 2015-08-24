@@ -8,13 +8,15 @@ import pl.codepot.groovy_no_way_back.module.GitHubUserTestModule;
 
 public final class TestModules implements Injector.TestModulesProvider {
 
+    public Object gitHubUserModule = new GitHubUserTestModule();
+
     @Override
     public Object[] getTestModules() {
         return new Object[]{
                 new BestScoreRepositoryTestModule(),
                 new GitHubOrganizationTestModule(),
                 new GitHubRepoTestModule(),
-                new GitHubUserTestModule()
+                gitHubUserModule
         };
     }
 }

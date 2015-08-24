@@ -6,4 +6,5 @@
     <string name="best_score">Your current best score is:</string>
     <string name="press_to_play">To play aging press the button</string>
     <string name="play">Play</string>
+    <string name="error_message">An error occurs</string>
 </resources>
