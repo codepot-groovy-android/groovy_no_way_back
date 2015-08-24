@@ -16,4 +16,8 @@ public final class ScoreSavingService {
         int bestScore = bestScoreRepository.getBestScore();
         bestScoreRepository.saveBestScore(Math.max(bestScore, currentScore));
     }
+
+    public String getBestScoreAsString() {
+        return Integer.toString(getBestScore());
+    }
 }
