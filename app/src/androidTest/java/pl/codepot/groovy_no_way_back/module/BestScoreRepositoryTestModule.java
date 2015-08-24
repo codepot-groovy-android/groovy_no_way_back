@@ -14,7 +14,7 @@ import pl.codepot.groovy_no_way_back.repository.BestScoreRepository;
         overrides = true
 )
 @SuppressWarnings("unused")
-public final class BestScoreRepositoryModule {
+public final class BestScoreRepositoryTestModule {
 
     @Provides
     @Singleton

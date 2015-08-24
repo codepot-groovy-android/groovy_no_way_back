@@ -20,8 +20,8 @@ public final class Injector {
         objectGraph.inject(object);
     }
 
-    public static void setTestModules(Object... modules) {
-        testModules = Arrays.asList(modules);
+    public static void setTestModules(TestModulesProvider modulesProvider) {
+        testModules = Arrays.asList(modulesProvider.getTestModules());
         objectGraph = null;
     }
 
@@ -30,5 +30,9 @@ public final class Injector {
         allModules.add(new AppModule(context));
         allModules.addAll(testModules);
         return ObjectGraph.create(allModules.toArray());
+    }
+
+    public interface TestModulesProvider {
+        Object[] getTestModules();
     }
 }

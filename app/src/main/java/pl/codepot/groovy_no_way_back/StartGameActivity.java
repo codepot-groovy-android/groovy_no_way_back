@@ -32,7 +32,7 @@ public class StartGameActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        TextView bestScoreView = (TextView) findViewById(R.id.bestScoreView);
+        TextView bestScoreView = (TextView) findViewById(R.id.best_score_view);
         bestScoreView.setText(scoreSavingService.getBestScoreAsString());
     }
 

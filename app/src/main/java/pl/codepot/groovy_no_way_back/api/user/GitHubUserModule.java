@@ -4,6 +4,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import pl.codepot.groovy_no_way_back.ChooseUserActivity;
 import pl.codepot.groovy_no_way_back.StartGameActivity;
 import pl.codepot.groovy_no_way_back.dagger.qualifier.GitHub;
 import retrofit.RestAdapter;
@@ -11,7 +12,7 @@ import retrofit.RestAdapter;
 
 @Module(
         complete = false,
-        injects = StartGameActivity.class,
+        injects = ChooseUserActivity.class,
         library = true
 )
 @SuppressWarnings("unused")

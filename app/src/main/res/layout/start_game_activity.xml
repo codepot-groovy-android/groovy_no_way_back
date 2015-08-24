@@ -15,7 +15,7 @@
         android:textAppearance="?android:textAppearanceMedium"/>
 
     <TextView
-        android:id="@+id/bestScoreView"
+        android:id="@+id/best_score_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_medium"

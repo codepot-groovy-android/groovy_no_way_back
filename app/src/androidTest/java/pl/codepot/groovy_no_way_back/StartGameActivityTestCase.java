@@ -6,7 +6,6 @@ import android.support.test.espresso.matcher.ViewMatchers;
 import android.test.ActivityInstrumentationTestCase2;
 
 import pl.codepot.groovy_no_way_back.dagger.Injector;
-import pl.codepot.groovy_no_way_back.module.BestScoreRepositoryModule;
 
 import static android.support.test.espresso.Espresso.onView;
 
@@ -19,16 +18,16 @@ public final class StartGameActivityTestCase extends ActivityInstrumentationTest
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        Injector.setTestModules(new BestScoreRepositoryModule());
+        Injector.setTestModules(new TestModules());
         getActivity();
     }
 
     public void testShouldStartChooseActivityAfterPlayClicked() {
         onView(ViewMatchers.withId(R.id.play)).perform(ViewActions.click());
-        onView(ViewMatchers.withId(R.id.users_list)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+        onView(ViewMatchers.withId(R.id.users_list_view)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 
     public void testShouldShowSavedBestScoreOnResume() {
-        onView(ViewMatchers.withId(R.id.bestScoreView)).check(ViewAssertions.matches(ViewMatchers.withText("16")));
+        onView(ViewMatchers.withId(R.id.best_score_view)).check(ViewAssertions.matches(ViewMatchers.withText("16")));
     }
 }
