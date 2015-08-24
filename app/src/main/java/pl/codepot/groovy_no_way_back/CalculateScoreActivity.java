@@ -31,7 +31,7 @@ public final class CalculateScoreActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        calculateScoreService.calculateScore()
+        calculateScoreService.calculateScore(getIntent().getStringExtra("login"))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<Integer>() {
                     @Override

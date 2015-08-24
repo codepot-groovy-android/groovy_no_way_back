@@ -6,7 +6,6 @@ import dagger.Module;
 import dagger.Provides;
 import pl.codepot.groovy_no_way_back.StartGameActivity;
 import pl.codepot.groovy_no_way_back.calculator.CalculateScoreService;
-import pl.codepot.groovy_no_way_back.repository.BestScoreRepository;
 import rx.Observable;
 
 @Module(
@@ -23,7 +22,7 @@ public final class CalculateScoreTestModule {
     CalculateScoreService provideBestScoreRepository() {
         return new CalculateScoreService() {
             @Override
-            public Observable<Integer> calculateScore() {
+            public Observable<Integer> calculateScore(String login) {
                 return Observable.just(25);
             }
         };
