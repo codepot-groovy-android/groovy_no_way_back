@@ -57,6 +57,7 @@ public final class CalculateScoreActivity extends Activity {
                 onTryAgain();
             }
         });
+        scoreSavingService.saveBestScore(score);
     }
 
     private void onTryAgain() {

@@ -25,4 +25,8 @@ public final class CalculateScoreActivityTestCase extends ActivityInstrumentatio
         getActivity();
         onView(ViewMatchers.withId(R.id.best_score_view)).check(ViewAssertions.matches(ViewMatchers.withText("16")));
     }
+
+    //TODO: Implement test for this
+    public void testShouldUpdateBestScore() {
+    }
 }
