@@ -22,4 +22,10 @@ public final class GitHubOrganizationModule {
     GitHubOrganizationApi provideGitHubOrganizationApi(@GitHub RestAdapter restAdapter) {
         return restAdapter.create(GitHubOrganizationApi.class);
     }
+
+    @Provides
+    @Singleton
+    GitHubUserOrganizationsApi provideGitHubUserOrganizationsApi(@GitHub RestAdapter restAdapter){
+        return restAdapter.create(GitHubUserOrganizationsApi.class);
+    }
 }

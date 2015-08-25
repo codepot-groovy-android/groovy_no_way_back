@@ -1,9 +1,12 @@
 package pl.codepot.groovy_no_way_back.calculator;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import pl.codepot.groovy_no_way_back.api.organization.GitHubUserOrganizationsApi;
 import pl.codepot.groovy_no_way_back.api.repo.GitHubUserReposApi;
 import pl.codepot.groovy_no_way_back.api.user.GitHubUserApi;
+import pl.codepot.groovy_no_way_back.dto.GitHubOrganization;
 import pl.codepot.groovy_no_way_back.dto.GitHubRepo;
 import pl.codepot.groovy_no_way_back.dto.GitHubUser;
 import rx.Observable;
@@ -14,18 +17,26 @@ public final class CalculateScoreServiceImpl implements CalculateScoreService {
 
     GitHubUserApi gitHubUserApi;
     GitHubUserReposApi gitHubUserReposApi;
+    GitHubUserOrganizationsApi gitHubUserOrganizationsApi;
 
-    public CalculateScoreServiceImpl(GitHubUserApi gitHubUserApi, GitHubUserReposApi gitHubUserReposApi) {
+    public CalculateScoreServiceImpl(GitHubUserApi gitHubUserApi, GitHubUserReposApi gitHubUserReposApi, GitHubUserOrganizationsApi gitHubUserOrganizationsApi) {
         this.gitHubUserApi = gitHubUserApi;
         this.gitHubUserReposApi = gitHubUserReposApi;
+        this.gitHubUserOrganizationsApi = gitHubUserOrganizationsApi;
     }
 
     @Override
     public Observable<Integer> calculateScore(String username) {
-        return userScore(username).zipWith(allReposScore(username), new Func2<Integer, Integer, Integer>() {
+        return userScore(username)
+                .zipWith(allReposScore(username), sumFunction)
+                .zipWith(allOrgsScore(username), sumFunction);
+    }
+
+    private Observable<Integer> allOrgsScore(String username) {
+        return gitHubUserOrganizationsApi.get(username).map(new Func1<List<GitHubOrganization>, Integer>() {
             @Override
-            public Integer call(Integer reposScore, Integer userScore) {
-                return reposScore + userScore;
+            public Integer call(List<GitHubOrganization> gitHubOrganizations) {
+                return gitHubOrganizations.size();
             }
         });
     }
@@ -57,4 +68,11 @@ public final class CalculateScoreServiceImpl implements CalculateScoreService {
         }
         return sum;
     }
+
+    Func2<Integer, Integer, Integer> sumFunction = new Func2<Integer, Integer, Integer>() {
+        @Override
+        public Integer call(Integer first, Integer second) {
+            return first + second;
+        }
+    };
 }
