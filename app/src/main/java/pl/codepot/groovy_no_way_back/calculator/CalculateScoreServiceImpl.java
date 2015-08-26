@@ -16,7 +16,10 @@ import pl.codepot.groovy_no_way_back.dto.GitHubUser;
 import rx.Observable;
 import rx.functions.Func1;
 import rx.functions.Func2;
+import rx.functions.Func3;
 import rx.functions.FuncN;
+
+import static rx.Observable.zip;
 
 public final class CalculateScoreServiceImpl implements CalculateScoreService {
 
@@ -34,9 +37,7 @@ public final class CalculateScoreServiceImpl implements CalculateScoreService {
 
     @Override
     public Observable<Integer> calculateScore(String username) {
-        return userScore(username)
-                .zipWith(allReposScore(username), sumFunction)
-                .zipWith(allOrgsScore(username), sumFunction);
+        return zip(userScore(username), allReposScore(username), allOrgsScore(username), sumFunction);
     }
 
     private Observable<Integer> allOrgsScore(String username) {
@@ -53,7 +54,7 @@ public final class CalculateScoreServiceImpl implements CalculateScoreService {
         for (GitHubOrganization organization : gitHubOrganizations) {
             organizationObservables.add(gitHubOrganizationApi.get(organization.login));
         }
-        Observable.zip(organizationObservables, new FuncN<Integer>() {
+        zip(organizationObservables, new FuncN<Integer>() {
             @Override
             public Integer call(Object... args) {
                 return sumOrganizationsScore(args);
@@ -62,9 +63,9 @@ public final class CalculateScoreServiceImpl implements CalculateScoreService {
         return gitHubOrganizations.size();
     }
 
-    private Integer sumOrganizationsScore(Object[] args) {
+    private Integer sumOrganizationsScore(Object... args) {
         int sum = 0;
-        for (Object organization : Arrays.asList(args)) {
+        for (Object organization : args) {
             GitHubOrganization gitHubOrganization = (GitHubOrganization) organization;
             sum += gitHubOrganization.public_repos + gitHubOrganization.followers;
         }
@@ -99,10 +100,10 @@ public final class CalculateScoreServiceImpl implements CalculateScoreService {
         return sum;
     }
 
-    Func2<Integer, Integer, Integer> sumFunction = new Func2<Integer, Integer, Integer>() {
+    Func3<Integer, Integer, Integer, Integer> sumFunction = new Func3<Integer, Integer, Integer, Integer>() {
         @Override
-        public Integer call(Integer first, Integer second) {
-            return first + second;
+        public Integer call(Integer first, Integer second, Integer third) {
+            return first + second + third;
         }
     };
 }

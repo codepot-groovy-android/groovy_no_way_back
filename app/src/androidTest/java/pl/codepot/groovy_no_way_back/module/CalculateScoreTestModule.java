@@ -8,6 +8,8 @@ import pl.codepot.groovy_no_way_back.StartGameActivity;
 import pl.codepot.groovy_no_way_back.calculator.CalculateScoreService;
 import rx.Observable;
 
+import static rx.Observable.just;
+
 @Module(
         complete = false,
         injects = StartGameActivity.class,
@@ -23,7 +25,7 @@ public final class CalculateScoreTestModule {
         return new CalculateScoreService() {
             @Override
             public Observable<Integer> calculateScore(String login) {
-                return Observable.just(25);
+                return just(25);
             }
         };
     }

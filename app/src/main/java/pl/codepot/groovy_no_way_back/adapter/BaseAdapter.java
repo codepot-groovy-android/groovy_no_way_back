@@ -14,10 +14,10 @@ public abstract class BaseAdapter extends RecyclerView.Adapter {
     protected List<ItemAdapter<? extends RecyclerView.ViewHolder>> items = new ArrayList<>();
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, @LayoutRes int layoutId) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(viewType, parent, false);
         for (ItemAdapter<? extends RecyclerView.ViewHolder> itemAdapter : items) {
-            if (itemAdapter.getLayoutId() == layoutId) {
+            if (itemAdapter.getLayoutId() == viewType) {
                 return itemAdapter.onCreateViewHolder(view);
             }
         }
