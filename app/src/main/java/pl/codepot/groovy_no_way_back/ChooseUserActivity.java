@@ -15,7 +15,7 @@ import pl.codepot.groovy_no_way_back.api.user.GitHubUserSearchApi;
 import pl.codepot.groovy_no_way_back.dagger.Injector;
 import pl.codepot.groovy_no_way_back.dto.GitHubSearchResults;
 import pl.codepot.groovy_no_way_back.dto.GitHubUser;
-import pl.codepot.groovy_no_way_back.event.UserChoosenEvent;
+import pl.codepot.groovy_no_way_back.event.UserChosenEvent;
 import pl.codepot.groovy_no_way_back.random.RandomQueryGenerator;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -66,7 +66,7 @@ public final class ChooseUserActivity extends Activity {
     }
 
     @SuppressWarnings("unused")
-    public void onEvent(UserChoosenEvent event){
+    public void onEvent(UserChosenEvent event){
         Intent intent = new Intent(this, CalculateScoreActivity.class);
         intent.putExtra("login", event.gitHubUser.login);
         startActivity(intent);

@@ -8,18 +8,18 @@ import pl.codepot.groovy_no_way_back.repository.ScoreSavingService;
 
 public class ScoreSavingServiceUnitTest {
 
-    BestScoreRepositoryStub scoreRepositoryStub = new BestScoreRepositoryStub();
+    BestScoreRepositorySpy repositorySpy = new BestScoreRepositorySpy();
 
     @Test
     public void testScoreServiceShouldSaveBestScore() throws Exception {
-        ScoreSavingService scoreSavingService = new ScoreSavingService(scoreRepositoryStub);
+        ScoreSavingService scoreSavingService = new ScoreSavingService(repositorySpy);
         scoreSavingService.saveBestScore(4);
         scoreSavingService.saveBestScore(8);
 
-        Assert.assertEquals(8, scoreRepositoryStub.bestScore);
+        Assert.assertEquals(8, repositorySpy.bestScore);
     }
 
-    private static class BestScoreRepositoryStub implements BestScoreRepository {
+    private static class BestScoreRepositorySpy implements BestScoreRepository {
 
         private int bestScore = 0;
 

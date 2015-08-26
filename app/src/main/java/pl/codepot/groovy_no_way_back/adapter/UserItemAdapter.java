@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide;
 import de.greenrobot.event.EventBus;
 import pl.codepot.groovy_no_way_back.R;
 import pl.codepot.groovy_no_way_back.dto.GitHubUser;
-import pl.codepot.groovy_no_way_back.event.UserChoosenEvent;
+import pl.codepot.groovy_no_way_back.event.UserChosenEvent;
 
 public final class UserItemAdapter implements ItemAdapter<UserItemAdapter.UserHolder> {
 
@@ -48,7 +48,7 @@ public final class UserItemAdapter implements ItemAdapter<UserItemAdapter.UserHo
     }
 
     private void onUserClicked() {
-        EventBus.getDefault().post(new UserChoosenEvent(gitHubUser));
+        EventBus.getDefault().post(new UserChosenEvent(gitHubUser));
     }
 
     public static final class UserHolder extends RecyclerView.ViewHolder {
