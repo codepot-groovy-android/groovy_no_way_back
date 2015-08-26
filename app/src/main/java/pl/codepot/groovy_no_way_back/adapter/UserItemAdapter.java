@@ -12,7 +12,7 @@ import pl.codepot.groovy_no_way_back.R;
 import pl.codepot.groovy_no_way_back.dto.GitHubUser;
 import pl.codepot.groovy_no_way_back.event.UserChosenEvent;
 
-public final class UserItemAdapter implements ItemAdapter<UserItemAdapter.UserHolder> {
+public final class UserItemAdapter implements ItemAdapter {
 
     private final GitHubUser gitHubUser;
 
@@ -26,7 +26,7 @@ public final class UserItemAdapter implements ItemAdapter<UserItemAdapter.UserHo
     }
 
     @Override
-    public UserHolder onCreateViewHolder(View itemView) {
+    public RecyclerView.ViewHolder onCreateViewHolder(View itemView) {
         return new UserHolder(itemView);
     }
 
