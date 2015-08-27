@@ -1,9 +1,6 @@
 package pl.codepot.groovy_no_way_back.calculator;
 
-import android.support.annotation.NonNull;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import pl.codepot.groovy_no_way_back.api.organization.GitHubOrganizationApi;
@@ -15,7 +12,6 @@ import pl.codepot.groovy_no_way_back.dto.GitHubRepo;
 import pl.codepot.groovy_no_way_back.dto.GitHubUser;
 import rx.Observable;
 import rx.functions.Func1;
-import rx.functions.Func2;
 import rx.functions.Func3;
 import rx.functions.FuncN;
 
@@ -23,9 +19,9 @@ import static rx.Observable.zip;
 
 public final class CalculateScoreServiceImpl implements CalculateScoreService {
 
-    GitHubUserApi gitHubUserApi;
-    GitHubUserReposApi gitHubUserReposApi;
-    GitHubUserOrganizationsApi gitHubUserOrganizationsApi;
+    private GitHubUserApi gitHubUserApi;
+    private GitHubUserReposApi gitHubUserReposApi;
+    private GitHubUserOrganizationsApi gitHubUserOrganizationsApi;
     private GitHubOrganizationApi gitHubOrganizationApi;
 
     public CalculateScoreServiceImpl(GitHubUserApi gitHubUserApi, GitHubUserReposApi gitHubUserReposApi, GitHubUserOrganizationsApi gitHubUserOrganizationsApi, GitHubOrganizationApi gitHubOrganizationApi) {
@@ -41,26 +37,25 @@ public final class CalculateScoreServiceImpl implements CalculateScoreService {
     }
 
     private Observable<Integer> allOrgsScore(String username) {
-        return gitHubUserOrganizationsApi.get(username).map(new Func1<List<GitHubOrganization>, Integer>() {
+        return gitHubUserOrganizationsApi.get(username).flatMap(new Func1<List<GitHubOrganization>, Observable<Integer>>() {
             @Override
-            public Integer call(List<GitHubOrganization> gitHubOrganizations) {
+            public Observable<Integer> call(List<GitHubOrganization> gitHubOrganizations) {
                 return getOrganizationsAndSumUp(gitHubOrganizations);
             }
         });
     }
 
-    private Integer getOrganizationsAndSumUp(List<GitHubOrganization> gitHubOrganizations) {
+    private Observable<Integer> getOrganizationsAndSumUp(List<GitHubOrganization> gitHubOrganizations) {
         List<Observable<GitHubOrganization>> organizationObservables = new ArrayList<>();
         for (GitHubOrganization organization : gitHubOrganizations) {
             organizationObservables.add(gitHubOrganizationApi.get(organization.login));
         }
-        zip(organizationObservables, new FuncN<Integer>() {
+        return zip(organizationObservables, new FuncN<Integer>() {
             @Override
             public Integer call(Object... args) {
                 return sumOrganizationsScore(args);
             }
         });
-        return gitHubOrganizations.size();
     }
 
     private Integer sumOrganizationsScore(Object... args) {
