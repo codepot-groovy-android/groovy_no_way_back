@@ -19,7 +19,17 @@ import pl.codepot.groovy_no_way_back.event.UserChosenEvent;
 
 public final class GitHubAdapter extends RecyclerView.Adapter<GitHubAdapter.Holder> {
 
+    public interface UserClickListener {
+
+        void onUserClick(GitHubUser gitHubUser);
+    }
+
     private final List<GitHubUser> items = new ArrayList<>();
+    private final UserClickListener listener;
+
+    public GitHubAdapter(UserClickListener listener) {
+        this.listener = listener;
+    }
 
     public void add(List<GitHubUser> users) {
         items.clear();
@@ -50,7 +60,7 @@ public final class GitHubAdapter extends RecyclerView.Adapter<GitHubAdapter.Hold
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventBus.getDefault().post(new UserChosenEvent(gitHubUser));
+                listener.onUserClick(gitHubUser);
             }
         });
     }

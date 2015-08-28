@@ -20,11 +20,11 @@ import pl.codepot.groovy_no_way_back.random.RandomQueryGenerator;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 
-public final class ChooseUserActivity extends Activity {
+public final class ChooseUserActivity extends Activity implements GitHubAdapter.UserClickListener {
 
     @Inject
     GitHubUserSearchApi gitHubUserSearchApi;
-    GitHubAdapter adapter = new GitHubAdapter();
+    GitHubAdapter adapter = new GitHubAdapter(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,6 @@ public final class ChooseUserActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        EventBus.getDefault().register(this);
         gitHubUserSearchApi.get(new RandomQueryGenerator().getRandomQuery())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<GitHubSearchResults<GitHubUser>>() {
@@ -63,17 +62,11 @@ public final class ChooseUserActivity extends Activity {
         findViewById(R.id.error_message).setVisibility(View.VISIBLE);
     }
 
-    @SuppressWarnings("unused")
-    public void onEvent(UserChosenEvent event){
+    @Override
+    public void onUserClick(GitHubUser gitHubUser) {
         Intent intent = new Intent(this, CalculateScoreActivity.class);
-        intent.putExtra("login", event.gitHubUser.login);
+        intent.putExtra("login", gitHubUser.login);
         startActivity(intent);
         finish();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        EventBus.getDefault().unregister(this);
     }
 }
