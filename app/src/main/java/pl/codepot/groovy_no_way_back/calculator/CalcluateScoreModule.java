@@ -21,6 +21,6 @@ public final class CalcluateScoreModule {
     @Provides
     @Singleton
     CalculateScoreService provideCalculateScoreService(GitHubUserApi gitHubUserApi, GitHubUserReposApi gitHubUserReposApi, GitHubUserOrganizationsApi gitHubUserOrganizationsApi, GitHubOrganizationApi gitHubOrganizationApi) {
-        return new CalculateScoreServiceImpl(gitHubUserApi, gitHubUserReposApi, gitHubUserOrganizationsApi,gitHubOrganizationApi);
+        return new CalculateScoreService(gitHubUserApi, gitHubUserReposApi, gitHubUserOrganizationsApi,gitHubOrganizationApi);
     }
 }
