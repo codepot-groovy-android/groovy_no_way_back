@@ -21,7 +21,7 @@ public final class CalculateScoreTestModule {
 
     @Provides
     @Singleton
-    CalculateScoreService provideBestScoreRepository() {
+    CalculateScoreService provideCalculateScoreService() {
         return new CalculateScoreService() {
             @Override
             public Observable<Integer> calculateScore(String login) {
