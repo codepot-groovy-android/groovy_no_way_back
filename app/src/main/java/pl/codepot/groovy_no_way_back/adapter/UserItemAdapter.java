@@ -53,13 +53,11 @@ public final class UserItemAdapter implements ItemAdapter {
 
     public static final class UserHolder extends RecyclerView.ViewHolder {
 
-        final View itemView;
         final ImageView avatarView;
         final TextView usernameView;
 
         public UserHolder(View itemView) {
             super(itemView);
-            this.itemView = itemView;
             avatarView = (ImageView) itemView.findViewById(R.id.avatar_view);
             usernameView = (TextView) itemView.findViewById(R.id.username_view);
         }
