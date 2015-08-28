@@ -3,6 +3,8 @@ package pl.codepot.groovy_no_way_back.calculator;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import pl.codepot.groovy_no_way_back.api.organization.GitHubOrganizationApi;
 import pl.codepot.groovy_no_way_back.api.organization.GitHubUserOrganizationsApi;
 import pl.codepot.groovy_no_way_back.api.repo.GitHubUserReposApi;
@@ -24,6 +26,7 @@ public final class CalculateScoreService {
     private GitHubUserOrganizationsApi gitHubUserOrganizationsApi;
     private GitHubOrganizationApi gitHubOrganizationApi;
 
+    @Inject
     public CalculateScoreService(GitHubUserApi gitHubUserApi, GitHubUserReposApi gitHubUserReposApi, GitHubUserOrganizationsApi gitHubUserOrganizationsApi, GitHubOrganizationApi gitHubOrganizationApi) {
         this.gitHubUserApi = gitHubUserApi;
         this.gitHubUserReposApi = gitHubUserReposApi;

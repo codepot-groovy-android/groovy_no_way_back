@@ -24,8 +24,6 @@ public final class ChooseUserActivity extends Activity {
 
     @Inject
     GitHubUserSearchApi gitHubUserSearchApi;
-    @Inject
-    RandomQueryGenerator randomQueryGenerator;
     GitHubAdapter adapter = new GitHubAdapter();
 
     @Override
@@ -42,7 +40,7 @@ public final class ChooseUserActivity extends Activity {
     protected void onResume() {
         super.onResume();
         EventBus.getDefault().register(this);
-        gitHubUserSearchApi.get(randomQueryGenerator.getRandomQuery())
+        gitHubUserSearchApi.get(new RandomQueryGenerator().getRandomQuery())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<GitHubSearchResults<GitHubUser>>() {
                     @Override
