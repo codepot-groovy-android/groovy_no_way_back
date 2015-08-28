@@ -18,18 +18,6 @@ public final class GitHubRepoModule {
 
     @Provides
     @Singleton
-    GitHubRepoApi provideGitHubRepoApi(RestAdapter restAdapter) {
-        return restAdapter.create(GitHubRepoApi.class);
-    }
-
-    @Provides
-    @Singleton
-    GitHubRepoSearchApi provideGitHubRepoSearchApi(RestAdapter restAdapter) {
-        return restAdapter.create(GitHubRepoSearchApi.class);
-    }
-
-    @Provides
-    @Singleton
     GitHubUserReposApi provideGitHubUserReposApi(RestAdapter restAdapter) {
         return restAdapter.create(GitHubUserReposApi.class);
     }

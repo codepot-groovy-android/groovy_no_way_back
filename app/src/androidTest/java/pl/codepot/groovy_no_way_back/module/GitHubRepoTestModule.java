@@ -1,6 +1,5 @@
 package pl.codepot.groovy_no_way_back.module;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -9,14 +8,13 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import pl.codepot.groovy_no_way_back.StartGameActivity;
-import pl.codepot.groovy_no_way_back.api.repo.GitHubRepoApi;
-import pl.codepot.groovy_no_way_back.api.repo.GitHubRepoSearchApi;
 import pl.codepot.groovy_no_way_back.api.repo.GitHubUserReposApi;
 import pl.codepot.groovy_no_way_back.dto.GitHubRepo;
-import pl.codepot.groovy_no_way_back.dto.GitHubSearchResults;
 import rx.Observable;
 
+import static java.util.Collections.singletonList;
 import static pl.codepot.groovy_no_way_back.factory.GitHubRepoFactory.newAndroidMaze;
+import static rx.Observable.just;
 
 
 @Module(
@@ -30,33 +28,11 @@ public final class GitHubRepoTestModule {
 
     @Provides
     @Singleton
-    GitHubRepoApi provideGitHubRepoApi() {
-        return new GitHubRepoApi() {
-            @Override
-            public Observable<GitHubRepo> get(String username, String reponame) {
-                return Observable.just(newAndroidMaze());
-            }
-        };
-    }
-
-    @Provides
-    @Singleton
-    GitHubRepoSearchApi provideGitHubRepoSearchApi() {
-        return new GitHubRepoSearchApi() {
-            @Override
-            public Observable<GitHubSearchResults<GitHubRepo>> get(String query) {
-                return Observable.just(new GitHubSearchResults<>(newAndroidMaze()));
-            }
-        };
-    }
-
-    @Provides
-    @Singleton
     GitHubUserReposApi provideGitHubUserReposApi() {
         return new GitHubUserReposApi() {
             @Override
             public Observable<List<GitHubRepo>> get(String username) {
-                return Observable.just(Collections.singletonList(newAndroidMaze()));
+                return just(singletonList(newAndroidMaze()));
             }
         };
     }
