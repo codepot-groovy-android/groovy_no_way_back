@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import javax.inject.Inject;
@@ -57,6 +58,7 @@ public final class ChooseUserActivity extends Activity implements GitHubAdapter.
     }
 
     private void handleError(Throwable throwable) {
+        Log.e("tag", "error", throwable);
         findViewById(R.id.error_message).setVisibility(View.VISIBLE);
     }
 

@@ -69,5 +69,7 @@ public final class CalculateScoreActivity extends Activity {
 
     private void onError(Throwable throwable) {
         Log.e("tag", "error", throwable);
+        findViewById(R.id.content).setVisibility(View.GONE);
+        findViewById(R.id.error_message).setVisibility(View.VISIBLE);
     }
 }
