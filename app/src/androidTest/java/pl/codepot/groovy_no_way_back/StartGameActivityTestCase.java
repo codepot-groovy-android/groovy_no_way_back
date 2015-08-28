@@ -1,11 +1,10 @@
 package pl.codepot.groovy_no_way_back;
 
 import android.support.test.espresso.action.ViewActions;
-import android.support.test.espresso.assertion.ViewAssertions;
-import android.support.test.espresso.matcher.ViewMatchers;
 import android.test.ActivityInstrumentationTestCase2;
 
 import pl.codepot.groovy_no_way_back.dagger.Injector;
+import pl.codepot.groovy_no_way_back.module.TestModules;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;

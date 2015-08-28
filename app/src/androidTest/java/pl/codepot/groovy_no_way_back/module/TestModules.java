@@ -1,11 +1,6 @@
-package pl.codepot.groovy_no_way_back;
+package pl.codepot.groovy_no_way_back.module;
 
 import pl.codepot.groovy_no_way_back.dagger.Injector;
-import pl.codepot.groovy_no_way_back.module.BestScoreRepositoryTestModule;
-import pl.codepot.groovy_no_way_back.module.GitHubOrganizationTestModule;
-import pl.codepot.groovy_no_way_back.module.GitHubRepoTestModule;
-import pl.codepot.groovy_no_way_back.module.GitHubUserTestModule;
-import pl.codepot.groovy_no_way_back.module.RestAdapterNotAccessibleModule;
 
 public final class TestModules implements Injector.TestModulesProvider {
 
@@ -20,5 +15,11 @@ public final class TestModules implements Injector.TestModulesProvider {
                 new GitHubRepoTestModule(),
                 gitHubUserModule
         };
+    }
+
+    public static TestModules testModulesWithFailingGitHubUser() {
+        TestModules testModules = new TestModules();
+        testModules.gitHubUserModule = new FailingGitHubUserTestModule();
+        return testModules;
     }
 }
