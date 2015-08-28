@@ -9,13 +9,11 @@ import android.view.View;
 
 import javax.inject.Inject;
 
-import de.greenrobot.event.EventBus;
 import pl.codepot.groovy_no_way_back.adapter.GitHubAdapter;
 import pl.codepot.groovy_no_way_back.api.user.GitHubUserSearchApi;
 import pl.codepot.groovy_no_way_back.dagger.Injector;
 import pl.codepot.groovy_no_way_back.dto.GitHubSearchResults;
 import pl.codepot.groovy_no_way_back.dto.GitHubUser;
-import pl.codepot.groovy_no_way_back.event.UserChosenEvent;
 import pl.codepot.groovy_no_way_back.random.RandomQueryGenerator;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;

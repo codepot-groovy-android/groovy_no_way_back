@@ -12,10 +12,8 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.greenrobot.event.EventBus;
 import pl.codepot.groovy_no_way_back.R;
 import pl.codepot.groovy_no_way_back.dto.GitHubUser;
-import pl.codepot.groovy_no_way_back.event.UserChosenEvent;
 
 public final class GitHubAdapter extends RecyclerView.Adapter<GitHubAdapter.Holder> {
 
