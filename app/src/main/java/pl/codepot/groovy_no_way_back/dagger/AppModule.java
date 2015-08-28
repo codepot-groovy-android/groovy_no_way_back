@@ -34,7 +34,7 @@ import static com.google.gson.FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES;
 @SuppressWarnings("unused")
 public final class AppModule {
 
-    private Context context;
+    private final Context context;
 
     public AppModule(Context context) {
         this.context = context;
@@ -42,13 +42,7 @@ public final class AppModule {
 
     @Provides
     @Singleton
-    Context provideContext() {
-        return context;
-    }
-
-    @Provides
-    @Singleton
-    SharedPreferences provideSharedPreferences(Context context) {
+    SharedPreferences provideSharedPreferences() {
         return PreferenceManager.getDefaultSharedPreferences(context);
     }
 
