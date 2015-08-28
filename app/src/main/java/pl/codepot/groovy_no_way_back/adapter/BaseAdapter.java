@@ -22,7 +22,7 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
                 return itemAdapter.onCreateViewHolder(view);
             }
         }
-        throw new RuntimeException("Item adapter corresponding to layouId not found");
+        throw new RuntimeException("Item adapter corresponding to viewType not found");
     }
 
     @Override
