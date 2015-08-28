@@ -9,7 +9,7 @@ public final class GitHubOrganizationFactory {
         elPassion.login = "elpassion";
         elPassion.id = 98255L;
         elPassion.name = "EL Passion";
-        elPassion.public_repos = 37;
+        elPassion.publicRepos = 37;
         elPassion.followers = 0;
         return elPassion;
     }

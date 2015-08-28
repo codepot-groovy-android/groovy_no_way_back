@@ -4,6 +4,6 @@ public final class GitHubOrganization {
     public String login;
     public Long id;
     public String name;
-    public Integer public_repos;
+    public Integer publicRepos;
     public Integer followers;
 }
