@@ -1,14 +1,18 @@
 package pl.codepot.groovy_no_way_back;
 
-import android.support.test.espresso.action.ViewActions;
-import android.support.test.espresso.assertion.ViewAssertions;
-import android.support.test.espresso.matcher.ViewMatchers;
 import android.test.ActivityInstrumentationTestCase2;
 
 import pl.codepot.groovy_no_way_back.dagger.Injector;
 
 import static android.support.test.espresso.Espresso.onView;
-import static pl.codepot.groovy_no_way_back.TestModulesBuilder.failingGitHubUserTestModule;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.Visibility.GONE;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static pl.codepot.groovy_no_way_back.TestModulesBuilder.testModulesWithFailingGitHubUser;
 
 public final class ChooseUserActivityTestCase extends ActivityInstrumentationTestCase2<ChooseUserActivity> {
 
@@ -19,25 +23,25 @@ public final class ChooseUserActivityTestCase extends ActivityInstrumentationTes
     public void testShouldDisplaySearchResults() {
         Injector.setTestModules(new TestModules());
         getActivity();
-        onView(ViewMatchers.withId(R.id.username_view)).check(ViewAssertions.matches(ViewMatchers.withText("OrdonTeam")));
+        onView(withId(R.id.username_view)).check(matches(withText("OrdonTeam")));
     }
 
     public void testShouldNotShowErrorMessageOnSuccess() {
         Injector.setTestModules(new TestModules());
         getActivity();
-        onView(ViewMatchers.withText(R.string.error_message)).check(ViewAssertions.matches(ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.GONE)));
+        onView(withText(R.string.error_message)).check(matches(withEffectiveVisibility(GONE)));
     }
 
     public void testShouldDisplayErrors() {
-        Injector.setTestModules(failingGitHubUserTestModule());
+        Injector.setTestModules(testModulesWithFailingGitHubUser());
         getActivity();
-        onView(ViewMatchers.withText(R.string.error_message)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+        onView(withText(R.string.error_message)).check(matches(isDisplayed()));
     }
 
     public void testShouldStartCalculateActivity() {
         Injector.setTestModules(new TestModules());
         getActivity();
-        onView(ViewMatchers.withId(R.id.username_view)).perform(ViewActions.click());
-        onView(ViewMatchers.withId(R.id.best_score_view)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+        onView(withId(R.id.username_view)).perform(click());
+        onView(withId(R.id.best_score_view)).check(matches(isDisplayed()));
     }
 }
