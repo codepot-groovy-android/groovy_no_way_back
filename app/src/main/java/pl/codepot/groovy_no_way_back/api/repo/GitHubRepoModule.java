@@ -5,7 +5,6 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import pl.codepot.groovy_no_way_back.StartGameActivity;
-import pl.codepot.groovy_no_way_back.dagger.qualifier.GitHub;
 import retrofit.RestAdapter;
 
 
@@ -19,19 +18,19 @@ public final class GitHubRepoModule {
 
     @Provides
     @Singleton
-    GitHubRepoApi provideGitHubRepoApi(@GitHub RestAdapter restAdapter) {
+    GitHubRepoApi provideGitHubRepoApi(RestAdapter restAdapter) {
         return restAdapter.create(GitHubRepoApi.class);
     }
 
     @Provides
     @Singleton
-    GitHubRepoSearchApi provideGitHubRepoSearchApi(@GitHub RestAdapter restAdapter) {
+    GitHubRepoSearchApi provideGitHubRepoSearchApi(RestAdapter restAdapter) {
         return restAdapter.create(GitHubRepoSearchApi.class);
     }
 
     @Provides
     @Singleton
-    GitHubUserReposApi provideGitHubUserReposApi(@GitHub RestAdapter restAdapter) {
+    GitHubUserReposApi provideGitHubUserReposApi(RestAdapter restAdapter) {
         return restAdapter.create(GitHubUserReposApi.class);
     }
 }

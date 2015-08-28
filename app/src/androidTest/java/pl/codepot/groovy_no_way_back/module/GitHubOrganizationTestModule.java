@@ -29,7 +29,7 @@ public final class GitHubOrganizationTestModule {
 
     @Provides
     @Singleton
-    GitHubOrganizationApi provideGitHubUserApi() {
+    GitHubOrganizationApi provideGitHubOrganizationApi() {
         return new GitHubOrganizationApi() {
             @Override
             public Observable<GitHubOrganization> get(String name) {

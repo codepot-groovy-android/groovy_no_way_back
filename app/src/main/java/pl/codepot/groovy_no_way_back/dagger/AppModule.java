@@ -15,7 +15,6 @@ import pl.codepot.groovy_no_way_back.api.organization.GitHubOrganizationModule;
 import pl.codepot.groovy_no_way_back.api.repo.GitHubRepoModule;
 import pl.codepot.groovy_no_way_back.api.user.GitHubUserModule;
 import pl.codepot.groovy_no_way_back.calculator.CalcluateScoreModule;
-import pl.codepot.groovy_no_way_back.dagger.qualifier.GitHub;
 import pl.codepot.groovy_no_way_back.random.RandomQueryGeneratorModule;
 import pl.codepot.groovy_no_way_back.repository.ScoreModule;
 import retrofit.RestAdapter;
@@ -67,7 +66,6 @@ public final class AppModule {
 
     @Provides
     @Singleton
-    @GitHub
     RestAdapter provideRestAdapter(Gson gson) {
         return new RestAdapter.Builder()
                 .setEndpoint("https://api.github.com")
