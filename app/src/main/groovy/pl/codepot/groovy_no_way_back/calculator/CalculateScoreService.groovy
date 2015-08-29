@@ -55,12 +55,7 @@ public final class CalculateScoreService {
         for (GitHubOrganization organization : gitHubOrganizations) {
             organizationObservables.add(gitHubOrganizationApi.get(organization.login));
         }
-        return zip(organizationObservables, new FuncN<Integer>() {
-            @Override
-            public Integer call(Object... args) {
-                return sumOrganizationsScore(args);
-            }
-        });
+        return zip(organizationObservables, this.&sumOrganizationsScore)
     }
 
     private Integer sumOrganizationsScore(Object... args) {
