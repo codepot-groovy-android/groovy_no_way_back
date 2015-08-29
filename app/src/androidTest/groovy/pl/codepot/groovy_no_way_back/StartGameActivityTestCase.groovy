@@ -26,8 +26,8 @@ public final class StartGameActivityTestCase extends ActivityInstrumentationTest
     }
 
     public void testShouldStartChooseActivityAfterPlayClicked() {
-        onView(withId(R.id.play)).perform(ViewActions.click());
-        onView(withId(R.id.users_list_view)).check(matches(isDisplayed()));
+        onView withId(R.id.play) perform ViewActions.click()
+        onView withId(R.id.users_list_view) check matches(isDisplayed())
     }
 
     public void testShouldShowSavedBestScoreOnResume() {
