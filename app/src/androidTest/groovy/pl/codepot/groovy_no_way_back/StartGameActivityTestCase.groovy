@@ -30,7 +30,7 @@ public final class StartGameActivityTestCase extends ActivityInstrumentationTest
         onView(withId(R.id.users_list_view)).check(matches(isDisplayed()));
     }
 
-    public void testShouldShowSavedBestScoreOnResume() {
-        onView(withId(R.id.best_score_view)).check(matches(withText("16")));
+    void testShouldShowSavedBestScoreOnResume() {
+        onView withId(R.id.best_score_view) check matches(withText("16"))
     }
 }
