@@ -5,5 +5,4 @@ public final class GitHubOrganization {
     public Long id;
     public String name;
     public Integer publicRepos;
-    public Integer followers;
 }

@@ -64,7 +64,7 @@ public final class CalculateScoreService {
         int sum = 0;
         for (Object organization : args) {
             GitHubOrganization gitHubOrganization = (GitHubOrganization) organization;
-            sum += gitHubOrganization.publicRepos + gitHubOrganization.followers;
+            sum += gitHubOrganization.publicRepos;
         }
         return sum;
     }
