@@ -34,11 +34,7 @@ final class CalculateScoreActivity extends Activity {
         super.onResume();
         calculateScoreService.calculateScore(getIntent().getStringExtra("login"))
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-            Integer score -> onScoreCalculated(score)
-        }, {
-            Throwable throwable -> onError(throwable)
-        })
+                .subscribe(this.&onScoreCalculated, this.&onError)
     }
 
     private void onScoreCalculated(Integer score) {
