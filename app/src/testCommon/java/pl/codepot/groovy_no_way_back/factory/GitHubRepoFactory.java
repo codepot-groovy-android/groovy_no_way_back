@@ -13,4 +13,14 @@ public final class GitHubRepoFactory {
         androidMaze.forksCount = 0;
         return androidMaze;
     }
+    public static GitHubRepo newRepo(int stargazers, int watchers, int forks) {
+        GitHubRepo androidMaze = new GitHubRepo();
+        androidMaze.id = -1L;
+        androidMaze.name = "NewRepo";
+        androidMaze.stargazersCount = stargazers;
+        androidMaze.watchersCount = watchers;
+        androidMaze.language = "Dummy";
+        androidMaze.forksCount = forks;
+        return androidMaze;
+    }
 }

@@ -13,4 +13,14 @@ public final class GitHubUserFactory {
         ordonTeam.followers = 1;
         return ordonTeam;
     }
+
+    public static GitHubUser newUserWithFollowers(int followers) {
+        GitHubUser ordonTeam = new GitHubUser();
+        ordonTeam.login = "NewUserWithFollowers";
+        ordonTeam.id = -1L;
+        ordonTeam.avatarUrl = "https://avatars.githubusercontent.com/u/4918734?v=3";
+        ordonTeam.name = "New user with followers";
+        ordonTeam.followers = followers;
+        return ordonTeam;
+    }
 }
