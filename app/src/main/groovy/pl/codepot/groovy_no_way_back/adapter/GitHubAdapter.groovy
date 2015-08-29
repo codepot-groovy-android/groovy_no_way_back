@@ -9,9 +9,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import pl.codepot.groovy_no_way_back.R;
 import pl.codepot.groovy_no_way_back.dto.GitHubUser;
 
@@ -49,7 +46,7 @@ public final class GitHubAdapter extends RecyclerView.Adapter<GitHubAdapter.Hold
     @Override
     public void onBindViewHolder(Holder holder, int position) {
         final GitHubUser gitHubUser = items.get(position);
-        if (gitHubUser.avatarUrl != null) {
+        if (gitHubUser.avatarUrl) {
             Glide.with(holder.avatarView.getContext()).load(gitHubUser.avatarUrl).into(holder.avatarView);
         } else {
             holder.avatarView.setImageResource(R.drawable.octocat);
