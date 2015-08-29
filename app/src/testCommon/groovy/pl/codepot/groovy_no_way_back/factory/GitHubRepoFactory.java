@@ -5,22 +5,23 @@ import pl.codepot.groovy_no_way_back.dto.GitHubRepo;
 public final class GitHubRepoFactory {
     public static GitHubRepo newAndroidMaze() {
         GitHubRepo androidMaze = new GitHubRepo();
-        androidMaze.id = 24003843L;
-        androidMaze.name = "AndroidMaze";
-        androidMaze.stargazersCount = 2;
-        androidMaze.watchersCount = 2;
-        androidMaze.language = "Groovy";
-        androidMaze.forksCount = 0;
+        androidMaze.setId(24003843L);
+        androidMaze.setName("AndroidMaze");
+        androidMaze.setStargazersCount(2);
+        androidMaze.setWatchersCount(2);
+        androidMaze.setLanguage("Groovy");
+        androidMaze.setForksCount(0);
         return androidMaze;
     }
+
     public static GitHubRepo newRepo(int stargazers, int watchers, int forks) {
         GitHubRepo androidMaze = new GitHubRepo();
-        androidMaze.id = -1L;
-        androidMaze.name = "NewRepo";
-        androidMaze.stargazersCount = stargazers;
-        androidMaze.watchersCount = watchers;
-        androidMaze.language = "Dummy";
-        androidMaze.forksCount = forks;
+        androidMaze.setId(-1L);
+        androidMaze.setName("NewRepo");
+        androidMaze.setStargazersCount(stargazers);
+        androidMaze.setWatchersCount(watchers);
+        androidMaze.setLanguage("Dummy");
+        androidMaze.setForksCount(forks);
         return androidMaze;
     }
 }

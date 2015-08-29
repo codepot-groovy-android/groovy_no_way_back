@@ -95,7 +95,7 @@ public final class CalculateScoreService {
     private Integer sumReposScore(List<GitHubRepo> gitHubRepos) {
         int sum = 0;
         for (GitHubRepo gitHubRepo : gitHubRepos) {
-            sum += gitHubRepo.stargazersCount + gitHubRepo.forksCount + gitHubRepo.watchersCount;
+            sum += gitHubRepo.getStargazersCount() + gitHubRepo.getForksCount() + gitHubRepo.getWatchersCount();
         }
         return sum;
     }
