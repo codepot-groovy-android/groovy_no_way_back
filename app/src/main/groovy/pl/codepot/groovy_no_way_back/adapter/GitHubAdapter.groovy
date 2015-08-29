@@ -1,16 +1,15 @@
-package pl.codepot.groovy_no_way_back.adapter;
+package pl.codepot.groovy_no_way_back.adapter
 
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
+import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import com.bumptech.glide.Glide
-import groovy.transform.CompileStatic;
-import pl.codepot.groovy_no_way_back.R;
-import pl.codepot.groovy_no_way_back.dto.GitHubUser;
+import groovy.transform.CompileStatic
+import pl.codepot.groovy_no_way_back.R
+import pl.codepot.groovy_no_way_back.dto.GitHubUser
 
 @CompileStatic
 public final class GitHubAdapter extends RecyclerView.Adapter<GitHubAdapter.Holder> {
@@ -47,11 +46,7 @@ public final class GitHubAdapter extends RecyclerView.Adapter<GitHubAdapter.Hold
     @Override
     public void onBindViewHolder(Holder holder, int position) {
         final GitHubUser gitHubUser = items.get(position);
-        if (gitHubUser.avatarUrl) {
-            Glide.with(holder.avatarView.getContext()).load(gitHubUser.avatarUrl).into(holder.avatarView);
-        } else {
-            holder.avatarView.setImageResource(R.drawable.octocat);
-        }
+        bindAvatar(gitHubUser, holder)
         holder.usernameView.setText(gitHubUser.login);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +54,13 @@ public final class GitHubAdapter extends RecyclerView.Adapter<GitHubAdapter.Hold
                 listener.onUserClick(gitHubUser);
             }
         });
+    }
+
+    private void bindAvatar(GitHubUser gitHubUser, Holder holder) {
+        String avatarUrl = gitHubUser.avatarUrl ?: 'http://i.stack.imgur.com/oaWJU.png'
+        Glide.with(holder.avatarView.getContext())
+                .load(avatarUrl)
+                .into(holder.avatarView);
     }
 
     public static final class Holder extends RecyclerView.ViewHolder {
