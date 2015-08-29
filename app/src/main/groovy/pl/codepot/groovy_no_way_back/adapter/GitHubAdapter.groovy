@@ -1,5 +1,6 @@
 package pl.codepot.groovy_no_way_back.adapter
 
+import android.support.annotation.Nullable
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import groovy.transform.CompileStatic
 import pl.codepot.groovy_no_way_back.R
+import pl.codepot.groovy_no_way_back.dto.GitHubRepo
 import pl.codepot.groovy_no_way_back.dto.GitHubUser
 
 @CompileStatic
@@ -56,8 +58,8 @@ public final class GitHubAdapter extends RecyclerView.Adapter<GitHubAdapter.Hold
         });
     }
 
-    private void bindAvatar(GitHubUser gitHubUser, Holder holder) {
-        String avatarUrl = gitHubUser.avatarUrl ?: 'http://i.stack.imgur.com/oaWJU.png'
+    private void bindAvatar(@Nullable GitHubUser gitHubUser, Holder holder) {
+        String avatarUrl = gitHubUser?.avatarUrl ?: 'http://i.stack.imgur.com/oaWJU.png'
         Glide.with(holder.avatarView.getContext())
                 .load(avatarUrl)
                 .into(holder.avatarView);
