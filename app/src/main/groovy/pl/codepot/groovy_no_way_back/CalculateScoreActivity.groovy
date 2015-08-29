@@ -1,26 +1,26 @@
-package pl.codepot.groovy_no_way_back;
+package pl.codepot.groovy_no_way_back
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
+import android.app.Activity
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.TextView
+import groovy.transform.CompileStatic
+import pl.codepot.groovy_no_way_back.calculator.CalculateScoreService
+import pl.codepot.groovy_no_way_back.dagger.Injector
+import pl.codepot.groovy_no_way_back.repository.ScoreSavingService
+import rx.android.schedulers.AndroidSchedulers
 
-import javax.inject.Inject;
+import javax.inject.Inject
 
-import pl.codepot.groovy_no_way_back.calculator.CalculateScoreService;
-import pl.codepot.groovy_no_way_back.dagger.Injector;
-import pl.codepot.groovy_no_way_back.repository.ScoreSavingService;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-
-public final class CalculateScoreActivity extends Activity {
+@CompileStatic
+final class CalculateScoreActivity extends Activity {
 
     @Inject
-    CalculateScoreService calculateScoreService;
+    protected CalculateScoreService calculateScoreService;
     @Inject
-    ScoreSavingService scoreSavingService;
+    protected ScoreSavingService scoreSavingService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,17 +34,11 @@ public final class CalculateScoreActivity extends Activity {
         super.onResume();
         calculateScoreService.calculateScore(getIntent().getStringExtra("login"))
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<Integer>() {
-                    @Override
-                    public void call(Integer score) {
-                        onScoreCalculated(score);
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        onError(throwable);
-                    }
-                });
+                .subscribe({
+            Integer score -> onScoreCalculated(score)
+        }, {
+            Throwable throwable -> onError(throwable)
+        })
     }
 
     private void onScoreCalculated(Integer score) {
