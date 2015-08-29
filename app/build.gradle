@@ -30,8 +30,8 @@ android {
         }
     }
     sourceSets {
-        androidTest.java.srcDir 'src/testCommon/java'
-        test.java.srcDir 'src/testCommon/java'
+        androidTest.java.srcDir 'src/testCommon/groovy'
+        test.java.srcDir 'src/testCommon/groovy'
     }
 }
 
