@@ -1,4 +1,16 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'org.codehaus.groovy:gradle-groovy-android-plugin:0.3.6'
+    }
+}
+
 apply plugin: 'com.android.application'
+apply plugin: 'groovyx.grooid.groovy-android'
+
 
 android {
     compileSdkVersion 23
@@ -17,6 +29,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    packagingOptions{
+        exclude 'META-INF/services/org.codehaus.groovy.transform.ASTTransformation'
     }
     sourceSets {
         androidTest.java.srcDir 'src/testCommon/java'
@@ -43,6 +58,17 @@ dependencies {
         exclude group: 'javax.inject'
         exclude group: 'com.android.support'
     }
+    androidTestCompile 'org.codehaus.groovy:groovy:2.4.3:grooid'
+    androidTestCompile('org.spockframework:spock-core:1.0-groovy-2.4') {
+        exclude group: 'org.codehaus.groovy'
+    }
 
     testCompile 'junit:junit:4.12'
+}
+
+project.androidGroovy {
+    options {
+        sourceCompatibility = '1.7'
+        targetCompatibility = '1.7'
+    }
 }
