@@ -1,6 +1,7 @@
 package pl.codepot.groovy_no_way_back
 
 import android.test.ActivityInstrumentationTestCase2
+import groovy.transform.CompileStatic
 import pl.codepot.groovy_no_way_back.dagger.Injector
 import pl.codepot.groovy_no_way_back.module.TestModules
 import rx.android.view.ViewActions
@@ -10,6 +11,7 @@ import static android.support.test.espresso.action.ViewActions.click
 import static android.support.test.espresso.assertion.ViewAssertions.matches
 import static android.support.test.espresso.matcher.ViewMatchers.*
 
+@CompileStatic
 public final class StartGameActivityTestCase extends ActivityInstrumentationTestCase2<StartGameActivity> {
 
     public StartGameActivityTestCase() {

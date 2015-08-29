@@ -7,11 +7,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-
+import com.bumptech.glide.Glide
+import groovy.transform.CompileStatic;
 import pl.codepot.groovy_no_way_back.R;
 import pl.codepot.groovy_no_way_back.dto.GitHubUser;
 
+@CompileStatic
 public final class GitHubAdapter extends RecyclerView.Adapter<GitHubAdapter.Holder> {
 
     public interface UserClickListener {

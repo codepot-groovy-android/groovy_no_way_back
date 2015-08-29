@@ -1,8 +1,9 @@
-package pl.codepot.groovy_no_way_back.dto;
+package pl.codepot.groovy_no_way_back.dto
 
-import com.google.gson.annotations.SerializedName;
+import groovy.transform.CompileStatic;
 
-public final class GitHubRepo {
+@CompileStatic
+final class GitHubRepo {
     long id;
     String name;
     int stargazersCount;
