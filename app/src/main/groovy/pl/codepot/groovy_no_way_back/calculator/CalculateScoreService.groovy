@@ -1,6 +1,5 @@
 package pl.codepot.groovy_no_way_back.calculator
 
-import groovy.transform.CompileDynamic
 import pl.codepot.groovy_no_way_back.api.organization.GitHubOrganizationApi
 import pl.codepot.groovy_no_way_back.api.organization.GitHubUserOrganizationsApi
 import pl.codepot.groovy_no_way_back.api.repo.GitHubUserReposApi
@@ -55,9 +54,14 @@ public final class CalculateScoreService {
         return zip(organizationObservables, this.&sumOrganizationsScore)
     }
 
-    @CompileDynamic
-    private Integer sumOrganizationsScore(Object... args) {
-        return args*.publicRepos.sum()
+    private Integer sumOrganizationsScore(Object... gitHubOrganizations) {
+        return gitHubOrganizations.collect {
+            (GitHubOrganization) it
+        }.collect {
+            it.publicRepos
+        }.inject(0) { a, b ->
+            a + b
+        }
     }
 
     private Observable<Integer> userScore(String username) {
