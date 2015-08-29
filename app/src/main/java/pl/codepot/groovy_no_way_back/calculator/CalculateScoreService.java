@@ -48,6 +48,9 @@ public final class CalculateScoreService {
     }
 
     private Observable<Integer> getOrganizationsAndSumUp(List<GitHubOrganization> gitHubOrganizations) {
+        if (gitHubOrganizations.isEmpty()) {
+            return Observable.just(0);
+        }
         List<Observable<GitHubOrganization>> organizationObservables = new ArrayList<>();
         for (GitHubOrganization organization : gitHubOrganizations) {
             organizationObservables.add(gitHubOrganizationApi.get(organization.login));
