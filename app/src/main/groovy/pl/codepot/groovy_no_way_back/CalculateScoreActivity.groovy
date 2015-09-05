@@ -18,9 +18,9 @@ import rx.functions.Action1;
 public final class CalculateScoreActivity extends Activity {
 
     @Inject
-    CalculateScoreService calculateScoreService;
+    protected CalculateScoreService calculateScoreService;
     @Inject
-    ScoreSavingService scoreSavingService;
+    protected ScoreSavingService scoreSavingService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

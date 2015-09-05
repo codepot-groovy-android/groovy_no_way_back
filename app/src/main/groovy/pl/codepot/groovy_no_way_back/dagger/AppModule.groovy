@@ -23,12 +23,12 @@ import static com.google.gson.FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES;
 
 
 @Module(
-        includes = {
+        includes = [
                 GitHubUserModule.class,
                 GitHubRepoModule.class,
                 GitHubOrganizationModule.class,
                 ScoreModule.class
-        },
+        ],
         library = true
 )
 @SuppressWarnings("unused")

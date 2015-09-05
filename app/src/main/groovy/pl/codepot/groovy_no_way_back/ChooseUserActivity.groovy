@@ -22,7 +22,7 @@ import rx.functions.Action1;
 public final class ChooseUserActivity extends Activity implements GitHubAdapter.UserClickListener {
 
     @Inject
-    GitHubUserSearchApi gitHubUserSearchApi;
+    protected GitHubUserSearchApi gitHubUserSearchApi;
     GitHubAdapter adapter = new GitHubAdapter(this);
 
     @Override

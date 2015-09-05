@@ -1,4 +1,16 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'org.codehaus.groovy:gradle-groovy-android-plugin:0.3.6'
+    }
+}
+
 apply plugin: 'com.android.application'
+apply plugin: 'groovyx.grooid.groovy-android'
+apply plugin: 'com.zeroturnaround.jrebel.android'
 
 android {
     compileSdkVersion 23
@@ -6,11 +18,12 @@ android {
 
     defaultConfig {
         applicationId "pl.codepot.groovy_no_way_back"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -18,13 +31,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    sourceSets {
-        androidTest.java.srcDir 'src/testCommon/java'
-        test.java.srcDir 'src/testCommon/java'
+    lintOptions {
+        abortOnError false
+    }
+}
+
+project.androidGroovy {
+    options {
+        sourceCompatibility = '1.7'
+        targetCompatibility = '1.7'
     }
 }
 
 dependencies {
+    compile 'org.codehaus.groovy:groovy:2.4.3:grooid'
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.google.android.gms:play-services:7.8.0'
     compile 'com.android.support:recyclerview-v7:23.0.0'
     compile 'com.android.support:appcompat-v7:23.0.0'
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.3.0'

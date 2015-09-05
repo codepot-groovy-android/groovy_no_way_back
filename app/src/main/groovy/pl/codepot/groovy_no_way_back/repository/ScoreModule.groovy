@@ -11,10 +11,10 @@ import pl.codepot.groovy_no_way_back.StartGameActivity;
 
 @Module(
         complete = false,
-        injects = {
+        injects = [
                 StartGameActivity.class,
                 CalculateScoreActivity.class
-        },
+        ],
         library = true
 )
 @SuppressWarnings("unused")
