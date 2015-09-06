@@ -33,10 +33,6 @@ android {
     packagingOptions{
         exclude 'META-INF/services/org.codehaus.groovy.transform.ASTTransformation'
     }
-    sourceSets {
-        androidTest.java.srcDir 'src/testCommon/java'
-        test.java.srcDir 'src/testCommon/java'
-    }
 }
 
 dependencies {
